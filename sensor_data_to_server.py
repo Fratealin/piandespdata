@@ -349,7 +349,7 @@ def main():
             sensor_data = [sensor_temp, sensor_pressure, sensor_humidity, sensor_light, sensor_oxidising, sensor_reducing, sensor_nh3, sensor_pm1, sensor_pm2_5, sensor_pm10]
 
             # Get high and low limits for alerts
-            file_path = '/home/pi/Pimoroni/enviroplus/location_and_action.json'
+            file_path = '/home/pi/python_scripts/enviroproject/alerts_config.json'
             with open(file_path, 'r') as infile:
                 jdata = json.load(infile)
 
@@ -376,7 +376,9 @@ def main():
             api_pressure = float(api_pressure)
             api_humidity = float(api_humidity)
             
-            write_to_csv.write_csv(nowDate, timestamp, location, action, sensor_data, weather)
+            # write to csv
+            csv_result = write_to_csv.write_csv(nowDate, timestamp, location, action, sensor_data, weather)
+            print("數據寫入csv文件")
 
             # get esp data via mqtt
             esp_dat_dict = mqtt_to_esp32.get_esp_data()

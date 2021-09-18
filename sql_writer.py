@@ -1,3 +1,9 @@
+# -----------------------------------------------------------
+# Uses various MySQL queries to interact with MySQL server on Raspberry Pi
+# Create Database if non exists, Delete database, show column names, insert rows
+# calculate average, max, minimum, and latest values etc.
+# -----------------------------------------------------------
+
 import mysql.connector
 from time import sleep
 
@@ -22,9 +28,6 @@ def DeleteUser(sqlCursor, userName):
     sql_DeleteUser = "DROP USER %s;"%userName
 
     sqlCursor.execute(sql_DeleteUser)
-
-
-
 
 
 class sql_writer:

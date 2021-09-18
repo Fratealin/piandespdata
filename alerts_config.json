@@ -1,0 +1,30 @@
+{
+    "sensor": {
+        "location": "Room",
+        "action": "na",
+        "interval": 8000.0,
+        "weather": "Rainy"
+    },
+    "notification": {
+        "templow": {
+            "on": "False",
+            "value": 2.0,
+            "msg": ""
+        },
+        "humidhigh": {
+            "on": "False",
+            "value": 15.0,
+            "msg": ""
+        },
+        "temphigh": {
+            "on": "False",
+            "value": 12.0,
+            "msg": ""
+        },
+        "lightlow": {
+            "on": "False",
+            "value": 20,
+            "msg": ""
+        }
+    }
+}

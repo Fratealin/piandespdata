@@ -1,30 +1,29 @@
 
 '''
-Push notification to phone
-https://iotdesignpro.com/projects/home-security-system-using-raspberry-pi-and-pir-sensor-with-push-notification-alert
+Send push notifications and Sms using Pushbullet
 '''
 
 from pushbullet import Pushbullet
-accessToken = "o.WnYMXcniHRVzGJSKmT4AUZE8eQJED0Js"
-deviceName = 'Samsung SM-A415F'
+import json
+
+# get email credentials from config file
+with open("/home/pi/python_scripts/enviroproject/config.json", "r") as f:
+    config = json.load(f)
+    accessToken = config["pushbullet"]["ACCESSTOKEN"]
+    deviceName = config["pushbullet"]["DEVICENAME"]
+    num = config["pushbullet"]["NUMBER"]
+
+# Connect to Pushbullet
 pb = Pushbullet(accessToken)
 
-
-def sendPush(message):
-
-    
+def sendPush(message): 
     # This will tell you the device name
     print(pb.devices)
-
-    if 1==1:
-        dev = pb.get_device(deviceName)
-        push = dev.push_note('警告',message)
+    dev = pb.get_device(deviceName) # Get device
+    push = dev.push_note('警告',message) # Send message
         
 
-def sendSms(message, num="+447878346435"):    
-    # This will tell you the device name
-    #print(pb.devices)
-        
-    device = pb.devices[0]
-    push = pb.push_sms(device, num, message)
+def sendSms(message, num=num):           
+    device = pb.devices[0] # Get device
+    push = pb.push_sms(device, num, message) # Send message
         
